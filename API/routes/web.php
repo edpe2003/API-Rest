@@ -26,6 +26,6 @@ Route::get('/', function () {
 
 //Route::get('Persona/Modificar', [ControllerPersona::class, 'modificarPersona'])->name('persona.modificar');
 
-Route::put('Persona/{persona}/Actualizar', [ControllerPersona::class, 'actualizarPersona'])->name('persona.actualizar');
+//Route::put('Persona/{persona}/Actualizar', [ControllerPersona::class, 'actualizarPersona'])->name('persona.actualizar');
 
 

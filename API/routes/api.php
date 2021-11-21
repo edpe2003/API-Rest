@@ -27,3 +27,5 @@ Route::post('Persona/Alta', [ControllerPersona::class, 'ingresarPersona'])->name
 Route::delete('Persona/Eliminar', [ControllerPersona::class, 'eliminarPersona'])->name('persona.eliminar');
 
 Route::post('Persona/Modificar', [ControllerPersona::class, 'modificarPersona'])->name('persona.modificar');
+
+Route::put('Persona/{persona}/Actualizar', [ControllerPersona::class, 'actualizarPersona'])->name('persona.actualizar');
