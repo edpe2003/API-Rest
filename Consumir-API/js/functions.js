@@ -63,6 +63,9 @@ function bajaPersona(id) {
         body: JSON.stringify(data)
     })
         .then(() => verDatosPersona());
+    document.getElementById("m-CI").value = "";
+    document.getElementById("m-nombre").value = "";
+    document.getElementById("m-apellido").value = "";
 }
 
 function modalModificar(id) {
