@@ -1,5 +1,57 @@
 let url = "http://localhost:8000/api/";
 
+function validarDatos() {
+    let estadoCI = false;
+    let estadoNombre = false;
+    let estadoApellido = false;
+
+    const CI = document.getElementById("CI");
+    const nombre = document.getElementById("nombre");
+    const apellido = document.getElementById("apellido");
+    const enviar = document.getElementById("enviar");
+
+    CI.addEventListener('keyup', () => {
+        if (CI.value.length < 8 || CI.value.length > 8 && CI.value.length > 1) {
+            estadoCI = false;
+            document.getElementById("mensajeCI").innerHTML = "<div class='badge bg-danger text-wrap' style='width: 6rem;'>Dato no valido</div>";
+        } else if (CI.value.length > 1) {
+            estadoCI = true;
+            document.getElementById("mensajeCI").innerHTML = "<svg class='text-success fw-bold float-start' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg>";
+        }
+        estado();
+    });
+
+    nombre.addEventListener('keyup', () => {
+        if (nombre.value.length > 20 || nombre.value.length < 2) {
+            estadoNombre = false;
+            document.getElementById("mensajeNombre").innerHTML = "<div class='badge bg-danger text-wrap' style='width: 6rem;'>Dato no valido</div>";
+        } else if (nombre.value.length > 1) {
+            estadoNombre = true;
+            document.getElementById("mensajeNombre").innerHTML = "<svg class='text-success fw-bold float-start' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg>";
+        }
+        estado();
+    });
+
+    apellido.addEventListener('keyup', () => {
+        if (apellido.value.length > 20 || apellido.value.length < 2) {
+            estadoApellido = false;
+            document.getElementById("mensajeApellido").innerHTML = "<div class='badge bg-danger text-wrap' style='width: 6rem;'>Dato no valido</div>";
+        } else if (apellido.value.length > 1) {
+            estadoApellido = true;
+            document.getElementById("mensajeApellido").innerHTML = "<svg class='text-success fw-bold float-start' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg>";
+        }
+        estado();
+    });
+
+    let estado = () => {
+        if (estadoCI && estadoNombre && estadoApellido) {
+            enviar.disabled = false;
+        } else {
+            enviar.disabled = true;
+        }
+    }
+}
+
 function verDatosPersona() {
     fetch(url + "Persona/Home", {
         method: 'GET'
@@ -118,3 +170,5 @@ function modificarPersona() {
 }
 
 verDatosPersona();
+
+validarDatos();

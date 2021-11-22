@@ -40,32 +40,41 @@
     -->
     <div class="container text-center border border-5 border-primary rounded mt-5 p-3 w-25">
         <h1>Ingresar Persona</h1>
-        <form>
-            <div class="row align-items-center">
+        <form id="formulario"> 
+            <div class="row align-items-center mt-2">
                 <div class="col">
                     <label for="CI">Cedula</label>
                 </div>
                 <div class="col">
-                    <input id="CI" type="number">
+                    <input id="CI" name="CI" type="number" required>     
+                </div>
+                <div class="col">
+                    <section id="mensajeCI"></section>     
                 </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center mt-2">
                 <div class="col">
                     <label for="nombre">Nombre</label>
                 </div>
                 <div class="col">
-                    <input id="nombre" type="text">
+                    <input id="nombre" name="nombre" type="text" required>
+                </div>
+                <div class="col">
+                    <section id="mensajeNombre"></section>     
                 </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center mt-2">
                 <div class="col">
                     <label for="apellido">Apellido</label>
                 </div>
                 <div class="col">
-                    <input id="apellido" type="text">
+                    <input id="apellido" name="apellido" type="text" required>
+                </div>
+                <div class="col text-center">
+                    <section id="mensajeApellido"></section>     
                 </div>
             </div>
-            <input onclick="altaPersona()" type="button" value="Ingresar" class="btn btn-primary w-100 mt-3">
+            <input onclick="altaPersona()" type="submit" id="enviar" value="Ingresar" class="btn btn-primary w-100 mt-3" disabled>
         </form>
     </div>
 
@@ -89,7 +98,7 @@
                     <label for="m-CI">Cedula</label>
                 </div>
                 <div class="col">
-                    <input id="m-CI" type="number">
+                    <input id="m-CI" type="number" required>
                 </div>
             </div>
             <div class="row align-items-center">
@@ -97,7 +106,7 @@
                     <label for="m-nombre">Nombre</label>
                 </div>
                 <div class="col">
-                    <input id="m-nombre" type="text">
+                    <input id="m-nombre" type="text" required>
                 </div>
             </div>
             <div class="row align-items-center">
@@ -105,11 +114,11 @@
                     <label for="m-apellido">Apellido</label>
                 </div>
                 <div class="col">
-                    <input id="m-apellido" type="text">
+                    <input id="m-apellido" type="text" required>
                 </div>
             </div>
             <input type="hidden" id="m-id">
-            <input onclick="modificarPersona()" type="button" value="Modificar" class="btn btn-warning w-100 mt-3">
+            <input onclick="modificarPersona()" type="submit" value="Modificar" class="btn btn-warning w-100 mt-3">
         </form>
     </div>
 
