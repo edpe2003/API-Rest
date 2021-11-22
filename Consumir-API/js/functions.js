@@ -1,4 +1,7 @@
 let url = "http://localhost:8000/api/";
+let estadoCI = false;
+let estadoNombre = false;
+let estadoApellido = false;
 
 function validarDatos() {
     let estadoCI = false;
@@ -52,6 +55,56 @@ function validarDatos() {
     }
 }
 
+function validarModificarDatos() {
+    const CI = document.getElementById("m-CI");
+    const nombre = document.getElementById("m-nombre");
+    const apellido = document.getElementById("m-apellido");
+    const enviar = document.getElementById("m-enviar");
+
+    CI.addEventListener('keyup', () => {
+        if (CI.value.length < 8 || CI.value.length > 8 && CI.value.length > 1) {
+            estadoCI = false;
+            document.getElementById("m-mensajeCI").innerHTML = "<div class='badge bg-danger text-wrap' style='width: 6rem;'>Dato no valido</div>";
+        } else if (CI.value.length > 1) {
+            estadoCI = true;
+            document.getElementById("m-mensajeCI").innerHTML = "<svg class='text-success fw-bold float-start' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg>";
+        }
+        estado();
+    });
+
+    nombre.addEventListener('keyup', () => {
+        if (nombre.value.length > 20 || nombre.value.length < 2) {
+            estadoNombre = false;
+            document.getElementById("m-mensajeNombre").innerHTML = "<div class='badge bg-danger text-wrap' style='width: 6rem;'>Dato no valido</div>";
+        } else if (nombre.value.length > 1) {
+            estadoNombre = true;
+            document.getElementById("m-mensajeNombre").innerHTML = "<svg class='text-success fw-bold float-start' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg>";
+        }
+        estado();
+    });
+
+    apellido.addEventListener('keyup', () => {
+        if (apellido.value.length > 20 || apellido.value.length < 2) {
+            estadoApellido = false;
+            document.getElementById("m-mensajeApellido").innerHTML = "<div class='badge bg-danger text-wrap' style='width: 6rem;'>Dato no valido</div>";
+        } else if (apellido.value.length > 1) {
+            estadoApellido = true;
+            document.getElementById("m-mensajeApellido").innerHTML = "<svg class='text-success fw-bold float-start' xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='currentColor' class='bi bi-check-circle' viewBox='0 0 16 16'><path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z'/><path d='M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z'/></svg>";
+        }
+        estado();
+    });
+
+    let estado = () => {
+        if (estadoCI && estadoNombre && estadoApellido) {
+            console.log("a");
+            enviar.disabled = false;
+        } else {
+            console.log("b");
+            enviar.disabled = true;
+        }
+    }
+}
+
 function verDatosPersona() {
     fetch(url + "Persona/Home", {
         method: 'GET'
@@ -93,9 +146,17 @@ function altaPersona() {
         body: JSON.stringify(data)
     })
         .then(() => verDatosPersona());
+
     document.getElementById("CI").value = "";
     document.getElementById("nombre").value = "";
     document.getElementById("apellido").value = "";
+
+    document.getElementById("mensajeCI").innerHTML = "";
+    document.getElementById("mensajeNombre").innerHTML = "";
+    document.getElementById("mensajeApellido").innerHTML = "";
+    document.getElementById("enviar").disabled = true;
+
+
 }
 
 function bajaPersona(id) {
@@ -142,6 +203,10 @@ function modalModificar(id) {
             document.getElementById("m-CI").value = data.CI;
             document.getElementById("m-nombre").value = data.nombre;
             document.getElementById("m-apellido").value = data.apellido;
+            document.getElementById("m-enviar").disabled = false;
+            estadoCI = true;
+            estadoNombre = true;
+            estadoApellido = true;
         });
 }
 
@@ -167,8 +232,16 @@ function modificarPersona() {
     document.getElementById("m-CI").value = "";
     document.getElementById("m-nombre").value = "";
     document.getElementById("m-apellido").value = "";
+
+    
+    document.getElementById("m-mensajeCI").innerHTML = "";
+    document.getElementById("m-mensajeNombre").innerHTML = "";
+    document.getElementById("m-mensajeApellido").innerHTML = "";
+    document.getElementById("m-enviar").disabled = true;
 }
 
 verDatosPersona();
 
 validarDatos();
+
+validarModificarDatos();

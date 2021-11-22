@@ -93,32 +93,41 @@
     <div class="container text-center border border-5 border-warning rounded mt-5 p-3 w-25">
         <h1>Modificar Persona</h1>
         <form>
-            <div class="row align-items-center">
+            <div class="row align-items-center mt-2">
                 <div class="col">
                     <label for="m-CI">Cedula</label>
                 </div>
                 <div class="col">
                     <input id="m-CI" type="number" required>
                 </div>
+                <div class="col text-center">
+                    <section id="m-mensajeCI"></section>     
+                </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center mt-2">
                 <div class="col">
                     <label for="m-nombre">Nombre</label>
                 </div>
                 <div class="col">
                     <input id="m-nombre" type="text" required>
                 </div>
+                <div class="col text-center">
+                    <section id="m-mensajeNombre"></section>     
+                </div>
             </div>
-            <div class="row align-items-center">
+            <div class="row align-items-center mt-2">
                 <div class="col">
                     <label for="m-apellido">Apellido</label>
                 </div>
                 <div class="col">
                     <input id="m-apellido" type="text" required>
                 </div>
+                <div class="col text-center">
+                    <section id="m-mensajeApellido"></section>     
+                </div>
             </div>
             <input type="hidden" id="m-id">
-            <input onclick="modificarPersona()" type="submit" value="Modificar" class="btn btn-warning w-100 mt-3">
+            <input onclick="modificarPersona()" id="m-enviar" type="submit" value="Modificar" class="btn btn-warning w-100 mt-3" disabled>
         </form>
     </div>
 
