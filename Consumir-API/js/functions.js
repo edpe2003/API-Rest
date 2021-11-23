@@ -96,10 +96,8 @@ function validarModificarDatos() {
 
     let estado = () => {
         if (estadoCI && estadoNombre && estadoApellido) {
-            console.log("a");
             enviar.disabled = false;
         } else {
-            console.log("b");
             enviar.disabled = true;
         }
     }
