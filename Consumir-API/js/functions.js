@@ -204,6 +204,11 @@ function modalModificar(id) {
             document.getElementById("m-nombre").value = data.nombre;
             document.getElementById("m-apellido").value = data.apellido;
             document.getElementById("m-enviar").disabled = false;
+
+            document.getElementById("m-CI").disabled = false;
+            document.getElementById("m-nombre").disabled = false;
+            document.getElementById("m-apellido").disabled = false;
+
             estadoCI = true;
             estadoNombre = true;
             estadoApellido = true;
@@ -238,6 +243,10 @@ function modificarPersona() {
     document.getElementById("m-mensajeNombre").innerHTML = "";
     document.getElementById("m-mensajeApellido").innerHTML = "";
     document.getElementById("m-enviar").disabled = true;
+
+    document.getElementById("m-CI").disabled = true;
+    document.getElementById("m-nombre").disabled = true;
+    document.getElementById("m-apellido").disabled = true;
 }
 
 verDatosPersona();
